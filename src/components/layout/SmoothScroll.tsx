@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 
 /**
  * Lenis smooth scroll, mounted once at the root. Disabled under
- * prefers-reduced-motion (native scrolling takes over).
+ * prefers-reduced-motion, and on /projects (which uses a native scroll-snap
+ * container that Lenis would otherwise hijack).
  */
 export function SmoothScroll() {
   const reduced = useReducedMotion();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || pathname.startsWith("/projects")) return;
 
     const lenis = new Lenis({
       duration: 1.1,
@@ -44,7 +47,7 @@ export function SmoothScroll() {
       document.removeEventListener("click", onAnchorClick);
       lenis.destroy();
     };
-  }, [reduced]);
+  }, [reduced, pathname]);
 
   return null;
 }
