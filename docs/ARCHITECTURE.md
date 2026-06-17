@@ -129,7 +129,8 @@ type ExperienceEntry = {
 // Howard's entry:
 //   org:   "Software Laboratory Center (SLC), BINUS"  // a.k.a. LCAS
 //   role:  "Laboratory Assistant (Aslab)"
-//   start: "2025", end: "Present", summary: "<duties TBC>"
+//   start: "2025", end: "Present",
+//   summary: "Mentor students, author lab assignments, and grade submissions."
 
 type SkillGroup = {
   label: string;          // "Game" | "Desktop" | "Web" | "Mobile" | "AI"
