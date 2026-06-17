@@ -11,6 +11,34 @@ tokens distilled from it.
 **Target audience:** Apple Developer Academy Indonesia admissions team, recruiters,
 collaborators.
 
+## Site sections (single-page scroll)
+
+1. **Hero** — name, positioning line, CTAs, contact.
+2. **About** — bio.
+3. **Education** — BINUS undergrad + relevant coursework/timeline.
+4. **Experience** — roles / activities (optional; fill as content arrives).
+5. **Skills** — grouped tech (Game, Desktop, Web, Mobile, AI).
+6. **Projects** — the five flagship projects.
+7. **Contact / Footer** — email, phone, GitHub, closing line.
+
+Anchored left-sidebar nav with active-section highlighting links to each.
+
+## Motion & interaction (a first-class goal)
+
+This site should *feel* alive, like the reference. Two pillars, both gated behind
+`prefers-reduced-motion` and disabled on touch where they don't apply:
+
+- **Custom cursor** — a small dot + trailing ring that follows the pointer, grows
+  / changes state on hover over links, buttons, and project cards (magnetic pull
+  on CTAs). Native cursor hidden on pointer-fine devices only.
+- **Scroll animations** — Lenis smooth scroll, scroll-reveal (fade + translate),
+  image parallax, line-by-line text reveals on headings, a scroll-progress
+  indicator, and sticky/pinned project transitions.
+
+See [ARCHITECTURE.md](./ARCHITECTURE.md) §4 for the motion tokens and the full
+animation catalog. Phase 5 is where these get tuned, but the cursor and reveal
+primitives land in Phase 1.
+
 ---
 
 ## Phase 0 — Project setup (foundation)
@@ -36,34 +64,56 @@ type system; `npm run build` passes; Lighthouse runs clean on the empty shell.
 
 **Goal:** The persistent chrome the whole site lives inside.
 
-- Fixed **left sidebar**: name/initials mark, nav links (Home, Projects/Works,
-  Contact), and a social icon column (GitHub, Email, plus LinkedIn if provided).
+- Fixed **left sidebar**: name/initials mark, nav links (Home, About, Education,
+  Projects, Contact), and a social icon column (GitHub, Email, plus LinkedIn if
+  provided).
 - **Theme toggle** (dark default, light alternate) top-right, persisted to
   `localStorage`, no flash on load.
+- **Custom cursor** — global dot + trailing ring follower with a hover/active
+  state. Hidden on touch and under reduced-motion (native cursor restored).
+- **Reveal primitive** — a reusable scroll-reveal wrapper + Lenis smooth-scroll
+  root, so every later section animates in consistently.
+- **Scroll-progress indicator** (thin bar or sidebar tick).
 - **Active-section highlighting** as you scroll (IntersectionObserver).
 - **Back-to-top** affordance.
 - Mobile: sidebar collapses into a top bar / slide-in menu; everything works
   from 320px up.
 
 **Done when:** Nav scrolls to sections, active link tracks scroll position, theme
-toggle persists across reloads, layout holds from 320px to ultrawide, keyboard
-tab order is correct.
+toggle persists across reloads, the custom cursor tracks and reacts to hover (and
+vanishes under reduced-motion / touch), layout holds from 320px to ultrawide,
+keyboard tab order is correct.
 
 ---
 
-## Phase 2 — Hero + About
+## Phase 2 — Hero, About, Education, Experience & Skills
 
-**Goal:** The first screen and the bio.
+**Goal:** The first screen, the bio, and the credentials sections.
 
 - **Hero:** massive thin uppercase name (`HOWARD FRELINDO GOH`) with wide
   letter-spacing, the positioning line as subtitle, primary CTAs (View Projects,
   GitHub, Email), and the contact line. Mirror the reference's negative space.
-- **About:** short bio behind a hairline `ABOUT ME` divider; skills grouped by
-  domain (Game, Desktop, Web, Mobile, AI) as quiet tech chips.
-- Entrance motion: fade/translate reveal, honoring reduced-motion.
+  Line-by-line text reveal on the name.
+- **About:** short bio behind a hairline `ABOUT ME` divider.
+- **Education:** behind an `EDUCATION` divider — Bina Nusantara University (BINUS),
+  undergraduate, with degree/major, expected graduation, and notable coursework.
+  Rendered as a clean timeline/entry list. *(Content to confirm: major, start/grad
+  year, GPA/honors if you want them shown.)*
+- **Experience:** optional `EXPERIENCE` timeline for roles, internships, or org
+  activity. Reuses the same timeline component as Education. Omit the section
+  cleanly if there's no content yet.
+- **Skills:** grouped by domain (Game, Desktop, Web, Mobile, AI) as quiet tech
+  chips — can live inside About or as its own `SKILLS` block.
+- Entrance motion: staggered fade/translate reveals per entry, honoring
+  reduced-motion.
 
-**Done when:** Hero and About match the reference's rhythm, content is exact per
-the build prompt, reveals are subtle, contrast passes WCAG AA.
+**Done when:** Each section matches the reference's rhythm, content is exact per
+the build prompt, Education renders BINUS correctly, empty optional sections drop
+out without leaving gaps, reveals are subtle, contrast passes WCAG AA.
+
+> **Content needed from you:** Education details (major, years, any honors) and any
+> Experience entries. Until provided, these render with clearly-marked placeholder
+> copy so the layout is ready to drop real content into.
 
 ---
 
@@ -107,17 +157,32 @@ matches the reference's restraint.
 
 ## Phase 5 — Polish: motion, performance, accessibility
 
-**Goal:** Make it feel finished and hit the metrics.
+**Goal:** Make it feel finished and hit the metrics. This is where the cursor and
+scroll system (stubbed in Phase 1) get tuned to feel right.
 
-- Smooth scroll (Lenis) + scroll-reveal pass; remove any jank.
+**Motion catalog to land/tune:**
+- **Custom cursor** — dot + trailing ring (spring-eased follow), hover-grow on
+  interactive elements, magnetic pull on primary CTAs, distinct "view" state over
+  project cards. Touch + reduced-motion fallbacks verified.
+- **Smooth scroll** — Lenis, with scroll-linked effects driven off it.
+- **Scroll reveals** — fade + translate, staggered for lists/grids.
+- **Text reveals** — line/word mask reveal on the hero name and section headings.
+- **Image parallax** — subtle offset on project images, alternating like the
+  reference Works page.
+- **Sticky/pinned project transitions** — optional pin-and-reveal as each project
+  enters.
+- **Scroll-progress indicator** + micro-interactions on links/chips/toggle.
+
+**Then the metrics pass:**
 - Image pipeline: `next/image`, modern formats, correct `sizes`, blur placeholders.
 - Accessibility sweep: semantic landmarks, alt text, focus rings, contrast,
-  reduced-motion verified.
-- Performance: code-split, audit bundle, lazy-load below-the-fold.
+  reduced-motion verified (every effect above no-ops cleanly).
+- Performance: code-split (lazy-load the cursor + motion libs), audit bundle,
+  lazy-load below-the-fold; confirm scroll effects don't drop frames.
 - Cross-browser check (Chrome, Safari, Firefox); zero console errors.
 
-**Done when:** **Lighthouse 90+ on all four metrics**, no console errors, reduced-motion
-fully respected.
+**Done when:** **Lighthouse 90+ on all four metrics**, no console errors, the cursor
+and scroll animations feel smooth at 60fps, and reduced-motion fully disables them.
 
 ---
 

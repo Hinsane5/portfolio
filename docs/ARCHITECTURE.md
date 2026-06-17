@@ -37,17 +37,24 @@ Website/
         │   ├── sitemap.ts     # SEO sitemap
         │   └── robots.ts      # SEO robots
         ├── components/
-        │   ├── layout/        # Sidebar, ThemeToggle, BackToTop, MobileNav
-        │   ├── sections/      # Hero, About, Projects, Contact, Footer
+        │   ├── layout/        # Sidebar, ThemeToggle, BackToTop, MobileNav,
+        │   │                  #   CustomCursor, ScrollProgress, SmoothScroll
+        │   ├── sections/      # Hero, About, Education, Experience, Skills,
+        │   │                  #   Projects, Contact, Footer
         │   ├── projects/      # ProjectCard, ProjectImage, TechChips, Placeholder
-        │   └── ui/            # primitives: Reveal, Divider, IconLink
+        │   └── ui/            # primitives: Reveal, TextReveal, Parallax,
+        │                      #   Magnetic, Divider, IconLink, TechChip, TimelineItem
         ├── content/
-        │   └── projects.ts    # typed project data (single source of truth)
+        │   ├── projects.ts    # typed project data (single source of truth)
+        │   ├── education.ts   # education entries
+        │   ├── experience.ts  # experience entries (optional)
+        │   └── skills.ts      # skill groups
         ├── lib/
-        │   ├── hooks/         # useActiveSection, useReducedMotion, useTheme
+        │   ├── hooks/         # useActiveSection, useReducedMotion, useTheme,
+        │   │                  #   useCursor, useLenis
         │   └── utils.ts
         └── types/
-            └── project.ts     # Project type definition
+            └── index.ts       # Project, EducationEntry, ExperienceEntry, SkillGroup
 ```
 
 > The exact framework path (`app/` subdir vs repo root) is a Phase 0 decision; the
@@ -60,15 +67,21 @@ Website/
 Content is static and typed — no backend, no fetching.
 
 ```
-content/projects.ts  ──typed Project[]──►  <Projects>  ──maps──►  <ProjectCard> × 5
+content/projects.ts    ──Project[]──────►  <Projects>    ──►  <ProjectCard> × 5
+content/education.ts    ──Education[]─────►  <Education>   ──►  <TimelineItem> × n
+content/experience.ts   ──Experience[]────►  <Experience>  ──►  <TimelineItem> × n
+content/skills.ts       ──SkillGroup[]────►  <Skills>      ──►  <TechChip> grid
         ▲
-        │  single source of truth for all project copy, labels, links, image paths
+        │  each file is the single source of truth for its section's copy
 ```
 
-- All five projects live in one `projects.ts` array typed by `types/project.ts`.
+- All section content lives in typed files under `content/`, typed by `types/`.
 - Sections compose top-to-bottom in `app/page.tsx`; the page is a single scroll.
+- Optional sections (Experience) render nothing when their array is empty.
 - Theme state lives in a small React context + `localStorage`; no global store.
 - Active-section tracking uses IntersectionObserver via a `useActiveSection` hook.
+- Cursor position + hover state flow through a `useCursor` hook/context consumed by
+  `<CustomCursor>`; interactive components opt into hover states via data attrs.
 
 ### `Project` type (shape)
 
@@ -90,6 +103,27 @@ type Project = {
   repo: string;
   images: string[];       // [] → render sized placeholder
 };
+
+type EducationEntry = {
+  institution: string;    // "Bina Nusantara University (BINUS)"
+  degree: string;         // "Undergraduate, <major>"
+  start: string;          // "2023"
+  end: string;            // "2027 (expected)"
+  details?: string[];     // coursework / honors / notes
+};
+
+type ExperienceEntry = {
+  org: string;
+  role: string;
+  start: string;
+  end: string;            // "Present"
+  summary: string;
+};
+
+type SkillGroup = {
+  label: string;          // "Game" | "Desktop" | "Web" | "Mobile" | "AI"
+  items: string[];        // ["Unity", "C#", ...]
+};
 ```
 
 ---
@@ -97,12 +131,19 @@ type Project = {
 ## 3. Component architecture
 
 ```
-RootLayout (fonts, theme provider, smooth-scroll)
+RootLayout (fonts, theme provider, smooth-scroll, cursor provider)
+├── CustomCursor          global pointer follower (portal, fixed)
+├── ScrollProgress        thin progress bar
 └── Page (single scroll)
     ├── Sidebar            fixed left: brand, nav, social icons
     ├── ThemeToggle        top-right, persisted
-    ├── Hero               name, positioning line, CTAs, contact
-    ├── About              bio + grouped skill chips
+    ├── Hero               name (text-reveal), positioning line, CTAs, contact
+    ├── About              bio
+    ├── Education
+    │   └── TimelineItem ×n  institution, degree, dates, details
+    ├── Experience        (renders only if content present)
+    │   └── TimelineItem ×n
+    ├── Skills             grouped tech chips (Game/Desktop/Web/Mobile/AI)
     ├── Projects
     │   └── ProjectCard ×5 image/placeholder, number, meta, tech, copy, repo
     ├── Contact            email / phone / github / closing line
@@ -111,7 +152,10 @@ RootLayout (fonts, theme provider, smooth-scroll)
 ```
 
 Shared primitives in `components/ui/`: `Reveal` (scroll-reveal wrapper that no-ops
-under reduced-motion), `Divider` (hairline rule), `IconLink`, `TechChip`.
+under reduced-motion), `TextReveal` (line/word mask reveal), `Parallax` (scroll
+offset), `Magnetic` (CTA pull toward cursor), `TimelineItem`, `Divider` (hairline
+rule), `IconLink`, `TechChip`. All motion primitives read `useReducedMotion` and
+degrade to static.
 
 ---
 
@@ -150,13 +194,44 @@ Monochrome by design — restraint over color. Verify every pairing passes WCAG 
 - Max content width capped; right-aligned secondary blocks (like the reference).
 - Mobile: sidebar → top bar / slide-in; single column; preserve the air.
 
-### Motion
+### Motion — animation catalog
 
-- Entrance: fade + small translate-Y on scroll into view (Framer Motion).
-- Smooth scroll via Lenis.
-- Project images: subtle parallax / alternating reveal like the Works page.
-- **All motion gated behind `prefers-reduced-motion`** — reveals become instant,
-  parallax disabled.
+The site leans on motion the way the reference does. Two systems: a **custom
+cursor** and **scroll-driven animation**. Everything below is gated behind
+`prefers-reduced-motion` and, where relevant, pointer type.
+
+**Custom cursor** (`<CustomCursor>` + `useCursor`)
+- Small filled **dot** tracking the pointer 1:1, plus a larger **ring** that
+  follows with spring easing (lag/trail).
+- **Hover-grow** over any interactive element; a distinct **"view"** label/scale
+  over project cards; **magnetic** pull on primary CTAs (`<Magnetic>`).
+- Native cursor hidden only on `pointer: fine`. On touch or reduced-motion the
+  component renders nothing and the native cursor is restored.
+- Implemented with `requestAnimationFrame` + transforms (no layout thrash);
+  position written to refs, not React state, to avoid re-renders.
+
+**Scroll animation**
+- **Smooth scroll:** Lenis drives the page; scroll-linked effects read its value.
+- **Reveal:** fade + translate-Y as elements enter (`<Reveal>`), staggered for
+  lists/grids and timeline entries.
+- **Text reveal:** line/word mask wipe on the hero name and section headings
+  (`<TextReveal>`).
+- **Parallax:** subtle vertical offset on project images, alternating sides like
+  the reference Works page (`<Parallax>`).
+- **Sticky/pinned:** optional pin-and-reveal as each project scrolls in.
+- **Scroll progress:** thin top bar / sidebar tick (`<ScrollProgress>`).
+- **Micro-interactions:** link underlines, chip hovers, theme-toggle transition.
+
+**Tokens**
+- Easing: spring for the cursor ring (low stiffness, high damping); `easeOut`
+  ~0.6s for reveals.
+- Reveal distance: ~16–24px translate, opacity 0→1.
+- Stagger: ~60–90ms between siblings.
+
+**Reduced-motion / fallbacks:** reveals become instant (content visible, no
+transform), parallax and pinning disabled, text-reveal shows immediately, cursor
+component unmounts. Verify via `useReducedMotion` in every motion primitive — no
+effect should be load-bearing for content or navigation.
 
 ---
 

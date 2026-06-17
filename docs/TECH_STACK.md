@@ -20,8 +20,9 @@ replicate its look and motion without fighting the tooling.
 | Language | **TypeScript** | Typed project content and components; catches content/shape errors at build time. |
 | Styling | **Tailwind CSS** | Fast, consistent design tokens; matches the reference's utility-driven build. |
 | Fonts | **`next/font` (Montserrat)** | The reference's typeface. Self-hosted, zero layout shift, no render-blocking. |
-| Animation | **Framer Motion** | Scroll reveals, entrance transitions, theme transitions. Declarative, respects `prefers-reduced-motion`. |
-| Smooth scroll | **Lenis** | The buttery scroll feel of the reference, lightweight, reduced-motion aware. |
+| Animation | **Framer Motion** | Scroll reveals, text reveals, entrance + theme transitions, cursor springs. Declarative, respects `prefers-reduced-motion`. |
+| Smooth scroll | **Lenis** | The buttery scroll feel of the reference, lightweight, reduced-motion aware. Drives scroll-linked parallax/progress. |
+| Custom cursor | **hand-built** | Dot + spring-trailed ring with hover/magnetic states. No dependency — `requestAnimationFrame` + transforms, fed by Framer Motion springs. Disabled on touch + reduced-motion. |
 | Icons | **lucide-react** | Clean, tree-shakeable social/UI icons. |
 | Images | **`next/image`** | AVIF/WebP, lazy-load, responsive `sizes`, blur placeholders → Lighthouse-friendly. |
 | Lint/format | **ESLint + Prettier** | Consistent, documented code. |

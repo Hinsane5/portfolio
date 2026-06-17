@@ -8,6 +8,13 @@ team, recruiters, and collaborators.
 **Design direction:** dark, minimal, typographically driven, modeled on
 [kentokawazoe.com](https://kentokawazoe.com/) — adapted to original content.
 
+**Sections:** Hero · About · Education · Experience · Skills · Projects · Contact —
+single-page scroll with anchored sidebar nav.
+
+**Motion:** a custom cursor (dot + trailing ring with hover/magnetic states) and a
+scroll-driven animation system (smooth scroll, reveals, text reveals, image
+parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
+
 > **Status:** Planning complete. The repo currently holds the build plan, tech
 > decisions, and architecture. App scaffolding is Phase 0 — see the build plan.
 
