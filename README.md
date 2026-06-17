@@ -36,6 +36,7 @@ parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 | [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md) | Phased build plan (Phase 0 → 6) with "done when" gates. |
 | [docs/TECH_STACK.md](docs/TECH_STACK.md) | Stack choices and the reasoning behind them. |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Folder layout, data flow, components, design tokens. |
+| [docs/DEPLOY.md](docs/DEPLOY.md) | Deploy steps (GitHub + Vercel), env vars, post-deploy checklist. |
 | [docs/Portfolio_Website_Build_Prompt.md](docs/Portfolio_Website_Build_Prompt.md) | Original source brief and full project content. |
 
 ## Tech stack
@@ -53,20 +54,19 @@ Vercel. Full rationale in [docs/TECH_STACK.md](docs/TECH_STACK.md).
 
 ## Getting started
 
-The Next.js app is created in Phase 0 of the [build plan](docs/BUILD_PLAN.md). Once
-scaffolded:
-
 ```bash
 npm install      # install dependencies
 npm run dev      # http://localhost:3000
 npm run build    # production build
+npm run start    # serve the production build
 npm run lint     # lint
 ```
 
 ## Deploy
 
-Built to deploy on [Vercel](https://vercel.com): import the repo, accept the
-detected Next.js defaults, and ship. Preview deploys are generated per push.
+Import the repo on [Vercel](https://vercel.com) (Next.js is auto-detected) and set
+`NEXT_PUBLIC_SITE_URL` to your production URL. Full steps + a post-deploy checklist
+in [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## Assets
 
