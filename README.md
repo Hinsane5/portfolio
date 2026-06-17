@@ -15,12 +15,11 @@ single-page scroll with anchored sidebar nav.
 scroll-driven animation system (smooth scroll, reveals, text reveals, image
 parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 
-> **Status:** Phase 1 complete — layout shell is live: fixed sidebar nav with
-> active-section highlighting, dark/light theme toggle (persisted), custom cursor,
-> Lenis smooth scroll, scroll-progress bar, back-to-top, and a responsive mobile
-> slide-in menu. Sections (Hero, About, Education, Projects, Contact) are wired up;
-> Hero is built, the rest get their rich treatments in Phases 2–4. See
-> [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
+> **Status:** Phase 2 complete — content sections are built: Hero with a
+> line-by-line name reveal, About with grouped skill chips, and Education +
+> Experience timelines. On top of the Phase 1 shell (sidebar nav, theme toggle,
+> custom cursor, smooth scroll, mobile menu). Next: Phase 3 (rich project cards
+> with images + parallax). See [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
 
 ## Documentation
 

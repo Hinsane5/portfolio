@@ -1,6 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import { profile } from "@/content/profile";
 import { Reveal } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 export function Hero() {
   return (
@@ -14,13 +15,13 @@ export function Hero() {
         </p>
       </Reveal>
 
-      <Reveal delay={0.05}>
-        <h1 className="text-[clamp(2.5rem,9vw,7rem)] leading-[0.95] font-light tracking-[0.1em] uppercase">
-          Howard
-          <br />
-          Frelindo Goh
-        </h1>
-      </Reveal>
+      <h1 className="text-[clamp(2.5rem,9vw,7rem)] leading-[0.95] font-light tracking-[0.1em] uppercase">
+        <TextReveal
+          lines={["Howard", "Frelindo Goh"]}
+          delay={0.05}
+          trigger="mount"
+        />
+      </h1>
 
       <Reveal delay={0.12}>
         <p className="text-muted mt-8 max-w-2xl text-base leading-relaxed sm:text-lg">
