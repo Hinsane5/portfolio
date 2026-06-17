@@ -6,7 +6,11 @@ import { TechChip } from "@/components/ui/TechChip";
 
 export function About() {
   return (
-    <section id="about" className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32">
+    <section
+      id="about"
+      aria-label="About"
+      className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32"
+    >
       <SectionHeading>About</SectionHeading>
 
       <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr]">

@@ -1,34 +1,60 @@
+import { Mail, Phone } from "lucide-react";
 import { profile } from "@/content/profile";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { GithubIcon } from "@/components/ui/icons";
 
 export function Contact() {
   return (
-    <section id="contact" className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32">
+    <section
+      id="contact"
+      aria-label="Contact"
+      className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32"
+    >
       <SectionHeading>Contact</SectionHeading>
-      <Reveal>
-        <p className="max-w-2xl text-2xl font-light tracking-wide sm:text-3xl">
-          Have something to build, or a question? Let&apos;s talk.
-        </p>
-      </Reveal>
-      <Reveal delay={0.08}>
-        <div className="text-muted mt-10 flex flex-col gap-3 text-base">
-          <a href={`mailto:${profile.email}`} className="hover:text-text w-fit transition-colors">
-            {profile.email}
-          </a>
-          <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="hover:text-text w-fit transition-colors">
-            {profile.phone}
-          </a>
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-text w-fit transition-colors"
-          >
-            {profile.github.replace("https://", "")}
-          </a>
+
+      <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+        <div>
+          <Reveal>
+            <p className="max-w-xl text-2xl leading-snug font-light tracking-wide sm:text-3xl">
+              Have an idea, a role, or a question? I&apos;d love to hear it.
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <Magnetic className="mt-8">
+              <a
+                href={`mailto:${profile.email}`}
+                className="border-text hover:bg-text hover:text-bg inline-flex items-center gap-3 rounded-full border px-7 py-3.5 text-sm tracking-wide transition-colors sm:text-base"
+              >
+                <Mail className="h-4 w-4" strokeWidth={1.5} />
+                {profile.email}
+              </a>
+            </Magnetic>
+          </Reveal>
         </div>
-      </Reveal>
+
+        <Reveal delay={0.12}>
+          <div className="text-muted flex flex-col gap-4">
+            <a
+              href={`tel:${profile.phone.replace(/\s/g, "")}`}
+              className="hover:text-text inline-flex w-fit items-center gap-3 transition-colors"
+            >
+              <Phone className="h-4 w-4" strokeWidth={1.5} />
+              {profile.phone}
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-text inline-flex w-fit items-center gap-3 transition-colors"
+            >
+              <GithubIcon className="h-4 w-4" />
+              {profile.github.replace("https://", "")}
+            </a>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }

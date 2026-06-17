@@ -11,7 +11,11 @@ import { Reveal } from "@/components/ui/Reveal";
  */
 export function ProjectsPreview() {
   return (
-    <section id="projects" className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32">
+    <section
+      id="projects"
+      aria-label="Projects"
+      className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32"
+    >
       <SectionHeading>Projects</SectionHeading>
 
       <ul>

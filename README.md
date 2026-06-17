@@ -15,13 +15,13 @@ single-page scroll with anchored sidebar nav.
 scroll-driven animation system (smooth scroll, reveals, text reveals, image
 parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 
-> **Status:** Phase 3 complete (+ Works-style projects page) — `/projects` is a
-> Kento-style showcase: images scroll on the left while a sticky panel on the
-> right updates to the in-view project, with a clickable quick-jump index so the
-> page never forces a long linear scroll. Each project also has its own detail
-> page at `/projects/[id]`. Home keeps a compact preview. Real screenshots are
-> wired in (hoshiBmaTchi still a placeholder). The shell (sidebar, theme, cursor,
-> smooth scroll) persists across pages. Next: Phase 4 + Phase 5. See
+> **Status:** Phases 1–5 complete. Full single-page site (hero, about, skills,
+> education, experience, projects) + a Kento-style `/projects` showcase with
+> scroll-snap, sticky updating panel, and quick-jump index, plus per-project
+> detail pages. Phase 4/5 added: polished contact + footer, magnetic CTAs,
+> accessibility (focus rings, landmarks, AA contrast, reduced-motion), image
+> optimization, and SEO (metadata, sitemap, robots). Remaining: **Phase 6 —
+> deploy to Vercel** (set `NEXT_PUBLIC_SITE_URL`). See
 > [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
 >
 > **Adding project screenshots:** drop images in `public/projects/`, then set the

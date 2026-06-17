@@ -14,11 +14,11 @@
 }
 
 /* Higher specificity than :root so the light override always wins when set. */
-:root[data-theme="light"] {
+:root:root[data-theme="light"] {
   --bg: #f5f5f3;
   --surface: #ffffff;
   --text: #1d1d1f;
-  --muted: #6e6e73;
+  --muted: #5b5b60; /* darkened for WCAG AA contrast on the light background */
   --hairline: rgba(0, 0, 0, 0.12);
 }
 
@@ -70,6 +70,18 @@ body {
 ::selection {
   background: var(--text);
   color: var(--bg);
+}
+
+/* Anchored sections clear the mobile top bar when jumped to. */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Visible keyboard focus for accessibility. */
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Hide the native cursor only while the custom cursor is active. */

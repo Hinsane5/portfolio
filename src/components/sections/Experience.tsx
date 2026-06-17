@@ -8,7 +8,11 @@ export function Experience() {
   if (experience.length === 0) return null;
 
   return (
-    <section id="experience" className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32">
+    <section
+      id="experience"
+      aria-label="Experience"
+      className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32"
+    >
       <SectionHeading>Experience</SectionHeading>
       <div className="max-w-3xl">
         {experience.map((x, i) => (

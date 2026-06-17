@@ -78,7 +78,7 @@ export default async function ProjectDetail({
 
         <Reveal>
           <div className="mt-12">
-            <ProjectImage project={project} />
+            <ProjectImage project={project} priority />
           </div>
         </Reveal>
 

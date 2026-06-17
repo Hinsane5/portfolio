@@ -2,11 +2,13 @@ import { ArrowDown } from "lucide-react";
 import { profile } from "@/content/profile";
 import { Reveal } from "@/components/ui/Reveal";
 import { TextReveal } from "@/components/ui/TextReveal";
+import { Magnetic } from "@/components/ui/Magnetic";
 
 export function Hero() {
   return (
     <section
       id="home"
+      aria-label="Introduction"
       className="flex min-h-dvh flex-col justify-center px-6 py-24 sm:px-12 lg:px-24"
     >
       <Reveal>
@@ -31,26 +33,32 @@ export function Hero() {
 
       <Reveal delay={0.18}>
         <div className="mt-10 flex flex-wrap gap-4">
-          <a
-            href="#projects"
-            className="border-text hover:bg-text hover:text-bg rounded-full border px-6 py-2.5 text-sm tracking-wide transition-colors"
-          >
-            View Projects
-          </a>
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border-hairline hover:border-text rounded-full border px-6 py-2.5 text-sm tracking-wide transition-colors"
-          >
-            GitHub
-          </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="border-hairline hover:border-text rounded-full border px-6 py-2.5 text-sm tracking-wide transition-colors"
-          >
-            Email
-          </a>
+          <Magnetic>
+            <a
+              href="#projects"
+              className="border-text hover:bg-text hover:text-bg inline-block rounded-full border px-6 py-2.5 text-sm tracking-wide transition-colors"
+            >
+              View Projects
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-hairline hover:border-text inline-block rounded-full border px-6 py-2.5 text-sm tracking-wide transition-colors"
+            >
+              GitHub
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
+              href={`mailto:${profile.email}`}
+              className="border-hairline hover:border-text inline-block rounded-full border px-6 py-2.5 text-sm tracking-wide transition-colors"
+            >
+              Email
+            </a>
+          </Magnetic>
         </div>
       </Reveal>
 

@@ -5,7 +5,11 @@ import { TimelineItem } from "@/components/ui/TimelineItem";
 
 export function Education() {
   return (
-    <section id="education" className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32">
+    <section
+      id="education"
+      aria-label="Education"
+      className="px-6 py-24 sm:px-12 lg:px-24 lg:py-32"
+    >
       <SectionHeading>Education</SectionHeading>
       <div className="max-w-3xl">
         {education.map((e, i) => (
