@@ -15,11 +15,17 @@ single-page scroll with anchored sidebar nav.
 scroll-driven animation system (smooth scroll, reveals, text reveals, image
 parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 
-> **Status:** Phase 2 complete — content sections are built: Hero with a
-> line-by-line name reveal, About with grouped skill chips, and Education +
-> Experience timelines. On top of the Phase 1 shell (sidebar nav, theme toggle,
-> custom cursor, smooth scroll, mobile menu). Next: Phase 3 (rich project cards
-> with images + parallax). See [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
+> **Status:** Phase 3 complete — rich project cards are live: alternating
+> image/content layout with scroll parallax, full content (meta, tech chips,
+> impact, what-I-learned), GROUP + IN PROGRESS labels, and sized placeholders
+> ready for screenshots. On top of Phases 1–2 (shell, nav, motion, hero, about,
+> timelines). Next: Phase 4 (contact polish) + Phase 5 (motion/perf/a11y). See
+> [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
+>
+> **Adding project screenshots:** drop images in `public/projects/`, then set the
+> `images` array for that project in `src/content/projects.ts` (e.g.
+> `images: ["/projects/arcane-ring-1.png"]`). They lazy-load and replace the
+> placeholder automatically.
 
 ## Documentation
 
