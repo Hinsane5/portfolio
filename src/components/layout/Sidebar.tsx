@@ -15,11 +15,10 @@ export function Sidebar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // Projects is its own route; the rest are in-page sections on the home page.
-  const hrefFor = (id: SectionId) =>
-    id === "projects" ? "/projects" : isHome ? `#${id}` : `/#${id}`;
-  const isActive = (id: SectionId) =>
-    id === "projects" ? pathname.startsWith("/projects") : isHome && active === id;
+  // All nav items are in-page sections on the home page (Projects scrolls to the
+  // preview; "View all projects" there opens the dedicated /projects page).
+  const hrefFor = (id: SectionId) => (isHome ? `#${id}` : `/#${id}`);
+  const isActive = (id: SectionId) => isHome && active === id;
 
   return (
     <aside className="fixed top-0 left-0 z-40 hidden h-dvh w-40 flex-col justify-between px-8 py-10 lg:flex">

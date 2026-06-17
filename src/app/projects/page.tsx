@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="lg:pl-40">
-      <div className="px-6 py-16 sm:px-12 lg:px-24 lg:py-0">
+    <main>
+      <div className="px-6 pt-20 pb-16 sm:px-12 lg:px-20 lg:py-0">
         <ProjectsShowcase />
       </div>
     </main>

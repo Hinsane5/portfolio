@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/content/projects";
 import { profile } from "@/content/profile";
 import { ProjectImage } from "@/components/projects/ProjectImage";
@@ -47,20 +46,10 @@ export default async function ProjectDetail({
   if (!project) notFound();
 
   return (
-    <main className="lg:pl-40">
+    <main>
       <article className="mx-auto max-w-4xl px-6 py-24 sm:px-12 lg:px-16 lg:py-32">
         <Reveal>
-          <Link
-            href="/projects"
-            className="text-muted hover:text-text inline-flex items-center gap-2 text-xs tracking-[0.18em] uppercase transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
-            All projects
-          </Link>
-        </Reveal>
-
-        <Reveal>
-          <div className="mt-10 mb-4 flex flex-wrap items-center gap-3">
+          <div className="mb-4 flex flex-wrap items-center gap-3">
             <span className="text-muted text-sm tracking-[0.2em]">
               {project.number}
             </span>

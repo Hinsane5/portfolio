@@ -17,8 +17,7 @@ export function MobileNav() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  const hrefFor = (id: SectionId) =>
-    id === "projects" ? "/projects" : isHome ? `#${id}` : `/#${id}`;
+  const hrefFor = (id: SectionId) => (isHome ? `#${id}` : `/#${id}`);
 
   // Lock body scroll while the menu is open; close on Escape.
   useEffect(() => {
