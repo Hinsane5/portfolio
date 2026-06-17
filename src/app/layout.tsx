@@ -9,6 +9,7 @@ import {
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="dark"
+      data-scroll-behavior="smooth"
       className={`${montserrat.variable} h-full antialiased`}
       suppressHydrationWarning
     >
@@ -48,6 +50,7 @@ export default function RootLayout({
           <SmoothScroll />
           <CustomCursor />
           <ScrollProgress />
+          <SiteChrome />
           {children}
         </ThemeProvider>
       </body>

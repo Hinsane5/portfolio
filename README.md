@@ -15,12 +15,12 @@ single-page scroll with anchored sidebar nav.
 scroll-driven animation system (smooth scroll, reveals, text reveals, image
 parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 
-> **Status:** Phase 3 complete — rich project cards are live: alternating
-> image/content layout with scroll parallax, full content (meta, tech chips,
-> impact, what-I-learned), GROUP + IN PROGRESS labels, and sized placeholders
-> ready for screenshots. On top of Phases 1–2 (shell, nav, motion, hero, about,
-> timelines). Next: Phase 4 (contact polish) + Phase 5 (motion/perf/a11y). See
-> [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
+> **Status:** Phase 3 complete (+ projects moved to their own pages) — the home
+> page stays short with a compact Projects preview, while the full work lives at
+> `/projects` (a Works-style index) and each project has its own detail page at
+> `/projects/[id]` with the complete write-up. The site shell (sidebar, theme,
+> cursor, smooth scroll) persists across all pages. Next: Phase 4 (contact polish)
+> + Phase 5 (motion/perf/a11y). See [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
 >
 > **Adding project screenshots:** drop images in `public/projects/`, then set the
 > `images` array for that project in `src/content/projects.ts` (e.g.

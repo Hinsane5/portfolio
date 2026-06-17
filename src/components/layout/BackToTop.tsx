@@ -19,11 +19,17 @@ export function BackToTop() {
     };
   }, []);
 
+  const scrollTop = () => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  };
+
   return (
     <AnimatePresence>
       {visible && (
-        <motion.a
-          href="#home"
+        <motion.button
+          type="button"
+          onClick={scrollTop}
           aria-label="Back to top"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,7 +37,7 @@ export function BackToTop() {
           className="border-hairline bg-bg/80 text-text hover:border-text/40 fixed right-6 bottom-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border backdrop-blur-sm transition-colors sm:right-8 sm:bottom-8"
         >
           <ArrowUp className="h-4 w-4" strokeWidth={1.5} />
-        </motion.a>
+        </motion.button>
       )}
     </AnimatePresence>
   );

@@ -31,19 +31,22 @@ Website/
     ├── public/                # favicon, og-image, static project images
     └── src/
         ├── app/
-        │   ├── layout.tsx     # root layout: fonts, theme, <html> shell
-        │   ├── page.tsx       # single-page composition of all sections
+        │   ├── layout.tsx     # root layout: fonts, theme, persistent SiteChrome
+        │   ├── page.tsx       # home: Hero…Contact + compact ProjectsPreview
+        │   ├── projects/
+        │   │   ├── page.tsx        # /projects — Works-style index
+        │   │   └── [id]/page.tsx   # /projects/[id] — per-project detail (SSG)
         │   ├── globals.css    # Tailwind layers + base styles
         │   ├── sitemap.ts     # SEO sitemap
         │   └── robots.ts      # SEO robots
         ├── components/
-        │   ├── layout/        # Sidebar, ThemeToggle, BackToTop, MobileNav,
-        │   │                  #   CustomCursor, ScrollProgress, SmoothScroll
+        │   ├── layout/        # SiteChrome, Sidebar, ThemeToggle, BackToTop,
+        │   │                  #   MobileNav, CustomCursor, ScrollProgress, SmoothScroll
         │   ├── sections/      # Hero, About, Education, Experience, Skills,
-        │   │                  #   Projects, Contact, Footer
-        │   ├── projects/      # ProjectCard, ProjectImage, TechChips, Placeholder
+        │   │                  #   ProjectsPreview, Contact, Footer
+        │   ├── projects/      # ProjectIndexCard, ProjectImage
         │   └── ui/            # primitives: Reveal, TextReveal, Parallax,
-        │                      #   Magnetic, Divider, IconLink, TechChip, TimelineItem
+        │                      #   TechChip, TimelineItem, SectionHeading, icons
         ├── content/
         │   ├── projects.ts    # typed project data (single source of truth)
         │   ├── education.ts   # education entries

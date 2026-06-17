@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Mail, Menu, Moon, Sun, X } from "lucide-react";
-import { sections } from "@/lib/sections";
+import { sections, type SectionId } from "@/lib/sections";
 import { profile } from "@/content/profile";
 import { GithubIcon } from "@/components/ui/icons";
 import { useTheme } from "@/components/theme-provider";
@@ -12,6 +14,11 @@ import { useTheme } from "@/components/theme-provider";
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const hrefFor = (id: SectionId) =>
+    id === "projects" ? "/projects" : isHome ? `#${id}` : `/#${id}`;
 
   // Lock body scroll while the menu is open; close on Escape.
   useEffect(() => {
@@ -27,9 +34,9 @@ export function MobileNav() {
   return (
     <>
       <div className="bg-bg/80 fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-6 py-5 backdrop-blur-sm lg:hidden">
-        <a href="#home" className="text-sm font-medium tracking-[0.2em] uppercase">
+        <Link href="/" className="text-sm font-medium tracking-[0.2em] uppercase">
           HFG
-        </a>
+        </Link>
         <div className="flex items-center gap-5">
           <button
             type="button"
@@ -76,16 +83,19 @@ export function MobileNav() {
             </div>
 
             <nav aria-label="Mobile" className="mt-12 flex flex-1 flex-col gap-6">
-              {sections.map(({ id, label }) => (
-                <a
-                  key={id}
-                  href={`#${id}`}
-                  onClick={() => setOpen(false)}
-                  className="text-3xl font-light tracking-[0.08em] uppercase"
-                >
-                  {label}
-                </a>
-              ))}
+              {sections.map(({ id, label }) => {
+                const href = hrefFor(id);
+                const cls = "text-3xl font-light tracking-[0.08em] uppercase";
+                return href.startsWith("#") ? (
+                  <a key={id} href={href} onClick={() => setOpen(false)} className={cls}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link key={id} href={href} onClick={() => setOpen(false)} className={cls}>
+                    {label}
+                  </Link>
+                );
+              })}
             </nav>
 
             <div className="flex gap-6">
