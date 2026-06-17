@@ -95,10 +95,10 @@ keyboard tab order is correct.
   GitHub, Email), and the contact line. Mirror the reference's negative space.
   Line-by-line text reveal on the name.
 - **About:** short bio behind a hairline `ABOUT ME` divider.
-- **Education:** behind an `EDUCATION` divider — Bina Nusantara University (BINUS),
-  undergraduate, with degree/major, expected graduation, and notable coursework.
-  Rendered as a clean timeline/entry list. *(Content to confirm: major, start/grad
-  year, GPA/honors if you want them shown.)*
+- **Education:** behind an `EDUCATION` divider — **Bina Nusantara University
+  (BINUS)**, undergraduate, **2024 – 2028 (expected)**, currently semester 4,
+  **GPA 3.95**. Rendered as a clean timeline/entry list. *(Content to confirm:
+  major/program name and any notable coursework.)*
 - **Experience:** optional `EXPERIENCE` timeline for roles, internships, or org
   activity. Reuses the same timeline component as Education. Omit the section
   cleanly if there's no content yet.

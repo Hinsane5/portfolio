@@ -107,10 +107,16 @@ type Project = {
 type EducationEntry = {
   institution: string;    // "Bina Nusantara University (BINUS)"
   degree: string;         // "Undergraduate, <major>"
-  start: string;          // "2023"
-  end: string;            // "2027 (expected)"
+  start: string;          // "2024"
+  end: string;            // "2028 (expected)"
+  gpa?: string;           // "3.95 / 4.00"
   details?: string[];     // coursework / honors / notes
 };
+
+// Howard's entry:
+//   institution: "Bina Nusantara University (BINUS)"
+//   degree:      "Undergraduate, <major TBC>"  // semester 4 as of 2026
+//   start: "2024", end: "2028 (expected)", gpa: "3.95 / 4.00"
 
 type ExperienceEntry = {
   org: string;
