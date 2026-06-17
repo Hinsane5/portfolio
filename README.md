@@ -15,12 +15,14 @@ single-page scroll with anchored sidebar nav.
 scroll-driven animation system (smooth scroll, reveals, text reveals, image
 parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 
-> **Status:** Phase 3 complete (+ projects moved to their own pages) — the home
-> page stays short with a compact Projects preview, while the full work lives at
-> `/projects` (a Works-style index) and each project has its own detail page at
-> `/projects/[id]` with the complete write-up. The site shell (sidebar, theme,
-> cursor, smooth scroll) persists across all pages. Next: Phase 4 (contact polish)
-> + Phase 5 (motion/perf/a11y). See [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
+> **Status:** Phase 3 complete (+ Works-style projects page) — `/projects` is a
+> Kento-style showcase: images scroll on the left while a sticky panel on the
+> right updates to the in-view project, with a clickable quick-jump index so the
+> page never forces a long linear scroll. Each project also has its own detail
+> page at `/projects/[id]`. Home keeps a compact preview. Real screenshots are
+> wired in (hoshiBmaTchi still a placeholder). The shell (sidebar, theme, cursor,
+> smooth scroll) persists across pages. Next: Phase 4 + Phase 5. See
+> [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
 >
 > **Adding project screenshots:** drop images in `public/projects/`, then set the
 > `images` array for that project in `src/content/projects.ts` (e.g.

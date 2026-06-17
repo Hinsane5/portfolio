@@ -44,7 +44,7 @@ Website/
         │   │                  #   MobileNav, CustomCursor, ScrollProgress, SmoothScroll
         │   ├── sections/      # Hero, About, Education, Experience, Skills,
         │   │                  #   ProjectsPreview, Contact, Footer
-        │   ├── projects/      # ProjectIndexCard, ProjectImage
+        │   ├── projects/      # ProjectsShowcase, ProjectImage
         │   └── ui/            # primitives: Reveal, TextReveal, Parallax,
         │                      #   TechChip, TimelineItem, SectionHeading, icons
         ├── content/

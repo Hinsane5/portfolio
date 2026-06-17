@@ -17,7 +17,7 @@ export const projects: Project[] = [
       "Designed and implemented the entire enemy AI architecture using the State pattern (Idle → Patrol → Chase → Attack), synchronized across all clients through Photon RPC calls. Built the full inventory system, NPC shop, consumable item effects (healing, mana, speed buffs), player stat tracking (HP / Mana / Stamina), and skill mechanics — resulting in a fully playable networked RPG.",
     learned:
       "Deepened my understanding of state-machine design and real-time multiplayer synchronization. Architecting four distinct enemy types with different attack patterns taught me to write modular, extensible game systems in C#; debugging networked state sharpened my appreciation for event-driven programming and careful data flow across clients.",
-    images: [],
+    images: ["/projects/arcane-ring.png"],
   },
   {
     id: "rusa-internal",
@@ -35,7 +35,7 @@ export const projects: Project[] = [
       "Architected the whole application around a layered MVC structure and five mandated design patterns (State/Event, Singleton, Observer, Command, Repository). Built the real-time event pipeline using Tauri IPC emit/listen, the PostgreSQL data layer with compile-time-verified SQLx queries, Redis caching, and Argon2 password hashing — so a supply request can trigger a Director voting session that then notifies the requester, all through one clean architecture.",
     learned:
       "Learned to think at a systems level — Rust ownership and safe concurrency, the Tauri IPC bridge, and how to enforce authorization across 20+ roles without leaking logic between layers. Managing this scale taught me the value of clear service contracts, defensive backend design, and why architecture decisions compound over time.",
-    images: [],
+    images: ["/projects/rusa-internal.png"],
   },
   {
     id: "hoshibmatchi",
@@ -81,7 +81,7 @@ export const projects: Project[] = [
       "As the tech member, implemented the MVVM foundation across the app (no business logic in Activities or Fragments), built the AI-powered Contribution Analytics that generates Team Health verdicts and targeted recommendations from member task statistics, and designed the Room schema for offline-first operation. Integrated Firebase Auth, Realtime Database sync, and Cloud Messaging for real-time push notifications.",
     learned:
       "The discipline of clean Android architecture and the real-world challenge of integrating external AI services under latency and reliability constraints. Working in a structured team with defined roles (Tech, Designer, PM) sharpened my ability to write modular, well-documented code teammates can build on without friction.",
-    images: [],
+    images: ["/projects/hwixel.jpeg"],
   },
   {
     id: "warungai",
@@ -104,6 +104,6 @@ export const projects: Project[] = [
       "As the sole hacker on a 4-member team, building the Node.js/Express backend and the Google Cloud AI pipeline that parses free-form Indonesian voice and text into structured transactions (item, quantity, action, price). Also implementing the Smart Kasbon debt-digitization system with automated collection drafts, a frictionless QR loyalty-capture flow, and a predictive restock alert engine.",
     learned:
       "Building AI processing for noisy, informal Indonesian dialect is teaching me how fragile standard models can be against real-world language variance — and how to design robust prompt engineering and fallback logic to handle it. Beyond the tech, this hackathon is shaping my product thinking: the most impactful solution often hides its complexity entirely and meets users where they already are.",
-    images: [],
+    images: ["/projects/warungai.png"],
   },
 ];
