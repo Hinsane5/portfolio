@@ -115,7 +115,7 @@ type EducationEntry = {
 
 // Howard's entry:
 //   institution: "Bina Nusantara University (BINUS)"
-//   degree:      "Undergraduate, <major TBC>"  // semester 4 as of 2026
+//   degree:      "Bachelor of Computer Science"  // semester 4 as of 2026
 //   start: "2024", end: "2028 (expected)", gpa: "3.95 / 4.00"
 
 type ExperienceEntry = {
