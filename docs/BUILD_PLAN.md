@@ -99,9 +99,11 @@ keyboard tab order is correct.
   (BINUS)**, **Bachelor of Computer Science**, **2024 – 2028 (expected)**,
   currently semester 4, **GPA 3.95**. Rendered as a clean timeline/entry list.
   *(Optional: add notable coursework if you want it shown.)*
-- **Experience:** optional `EXPERIENCE` timeline for roles, internships, or org
-  activity. Reuses the same timeline component as Education. Omit the section
-  cleanly if there's no content yet.
+- **Experience:** `EXPERIENCE` timeline for roles, internships, and org activity.
+  Reuses the same timeline component as Education.
+  - **Laboratory Assistant (Aslab)** — Software Laboratory Center (SLC), BINUS
+    (also referred to as LCAS). Current role. *(Start date to confirm; add a short
+    summary of duties — e.g. mentoring students, running lab sessions, grading.)*
 - **Skills:** grouped by domain (Game, Desktop, Web, Mobile, AI) as quiet tech
   chips — can live inside About or as its own `SKILLS` block.
 - Entrance motion: staggered fade/translate reveals per entry, honoring
