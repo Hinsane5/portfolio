@@ -17,6 +17,7 @@ export function Experience() {
               title={x.role}
               subtitle={x.org}
               period={`${x.start} – ${x.end}`}
+              divider={i !== 0}
             >
               {x.summary}
             </TimelineItem>

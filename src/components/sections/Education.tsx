@@ -15,6 +15,7 @@ export function Education() {
               subtitle={e.degree}
               period={`${e.start} – ${e.end}`}
               meta={e.gpa ? `GPA ${e.gpa}` : undefined}
+              divider={i !== 0}
             >
               {e.details && e.details.join(" ")}
             </TimelineItem>
