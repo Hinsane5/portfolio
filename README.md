@@ -15,10 +15,12 @@ single-page scroll with anchored sidebar nav.
 scroll-driven animation system (smooth scroll, reveals, text reveals, image
 parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 
-> **Status:** Phase 0 complete — Next.js + TypeScript + Tailwind v4 app scaffolded
-> with design tokens, Montserrat font, dark/light theming, reduced-motion guard,
-> and all typed content in place. Next up: Phase 1 (layout shell, nav, custom
-> cursor). See [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
+> **Status:** Phase 1 complete — layout shell is live: fixed sidebar nav with
+> active-section highlighting, dark/light theme toggle (persisted), custom cursor,
+> Lenis smooth scroll, scroll-progress bar, back-to-top, and a responsive mobile
+> slide-in menu. Sections (Hero, About, Education, Projects, Contact) are wired up;
+> Hero is built, the rest get their rich treatments in Phases 2–4. See
+> [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
 
 ## Documentation
 
