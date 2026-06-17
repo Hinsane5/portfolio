@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/*
+  Design tokens — distilled from the reference (kentokawazoe.com).
+  Dark is the default; [data-theme="light"] is the alternate (Phase 1 toggle).
+  See docs/ARCHITECTURE.md §4.
+*/
+:root {
+  --bg: #0e0e0e;
+  --surface: #1a1a1a;
+  --text: rgba(255, 255, 255, 0.87);
+  --muted: rgba(255, 255, 255, 0.55);
+  --hairline: rgba(255, 255, 255, 0.15);
+}
+
+/* Higher specificity than :root so the light override always wins when set. */
+:root[data-theme="light"] {
+  --bg: #f5f5f3;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --hairline: rgba(0, 0, 0, 0.12);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-hairline: var(--hairline);
+
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+
+  /* Wide display tracking, matching the reference's thin uppercase name. */
+  --tracking-display: 0.12em;
+  --tracking-label: 0.18em;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+/* Respect reduced-motion globally: kill smooth scroll and animations. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}

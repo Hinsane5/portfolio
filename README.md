@@ -15,8 +15,10 @@ single-page scroll with anchored sidebar nav.
 scroll-driven animation system (smooth scroll, reveals, text reveals, image
 parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 
-> **Status:** Planning complete. The repo currently holds the build plan, tech
-> decisions, and architecture. App scaffolding is Phase 0 — see the build plan.
+> **Status:** Phase 0 complete — Next.js + TypeScript + Tailwind v4 app scaffolded
+> with design tokens, Montserrat font, dark/light theming, reduced-motion guard,
+> and all typed content in place. Next up: Phase 1 (layout shell, nav, custom
+> cursor). See [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
 
 ## Documentation
 
