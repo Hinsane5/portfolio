@@ -30,16 +30,16 @@ replicate its look and motion without fighting the tooling.
 
 ## Proposed 3D addition
 
-The design backlog proposes one interactive object in the home hero. If its
-visual direction is approved, use **React Three Fiber + Three.js** in a lazily
-loaded client component, with a still poster for reduced motion, loading, and
-unsupported WebGL. Render on demand and keep the scene small enough to preserve
-the existing performance target. See [BACKLOG.md](./BACKLOG.md) for scope and
-acceptance criteria. These packages are not installed yet.
+The design backlog proposes one low-contrast 3D form behind the home hero copy.
+If its visual direction is approved, use **React Three Fiber + Three.js** in a
+lazily loaded client component, with a still poster for reduced motion, loading,
+and unsupported WebGL. Render on demand and keep pointer parallax restrained so
+the background stays secondary to the text. See [BACKLOG.md](./BACKLOG.md) for
+scope and acceptance criteria. These packages are not installed yet.
 
 ## Deliberately NOT included
 
-- **Site-wide 3D scenes** — the proposed hero object is a focal accent; other
+- **Site-wide 3D scenes** — the proposed hero background is a single accent;
   sections remain centered on content and project evidence.
 - **A CMS / database** — content is small and stable; it lives in a typed
   `content/projects.ts` file. No backend needed.

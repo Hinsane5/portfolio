@@ -287,13 +287,12 @@ text-heavy project detail pages. [BACKLOG.md](./BACKLOG.md) tracks a proposed
 refresh; the items below are design constraints, not shipped architecture.
 
 - **Hero composition:** keep the name, positioning, and calls to action as HTML.
-  On desktop, reserve a separate area beside the copy for one sculptural 3D
-  object. On mobile, place a smaller object below or beside the copy.
-- **3D scene boundary:** load the scene only on the home hero. The preferred
-  visual proposal is an HFG monogram; interlocking rings are an alternate. The
-  final shape, material, and accent color require a mockup decision.
-- **Interaction:** use restrained pointer tilt, a short entrance settle, and
-  optional touch drag. Avoid continuous motion while the visitor is reading.
+  Place one low-contrast 3D form behind the copy as background atmosphere, not
+  as a standalone sculpture. Compare an HFG monogram with interlocking rings.
+- **3D scene boundary:** load the scene only on the home hero. The final form,
+  material, and accent strength are still open for review.
+- **Interaction:** use restrained pointer parallax on desktop and keep the form
+  still or nearly still on mobile. Avoid continuous rotation and camera travel.
 - **Fallback:** a still poster must preserve the hero layout for reduced motion,
   loading, unsupported WebGL, or lower-power devices. The object is decorative;
   navigation and content remain in semantic HTML.

@@ -240,13 +240,16 @@ function RingsArtwork() {
   );
 }
 
-function Artwork({ concept }: { concept: Concept }) {
+function Artwork({
+  concept,
+  className,
+}: {
+  concept: Concept;
+  className: string;
+}) {
   return (
-    <div className="absolute inset-0">
+    <div className={cn("pointer-events-none absolute", className)}>
       {concept === "monogram" ? <MonogramArtwork /> : <RingsArtwork />}
-      <span className="absolute right-1 bottom-2 text-[0.5rem] tracking-[0.24em] text-white/35 uppercase">
-        {concept === "monogram" ? "Identity / 01" : "Connection / 02"}
-      </span>
     </div>
   );
 }
@@ -259,8 +262,10 @@ function HeroPreview({
   viewport: Viewport;
 }) {
   const isMobile = viewport === "mobile";
-  const title = concept === "monogram" ? "HFG Sculpture" : "Interlocking Rings";
-  const ConceptArt = <Artwork concept={concept} />;
+  const title =
+    concept === "monogram"
+      ? "HFG Monogram Background"
+      : "Interlocking Rings Background";
 
   return (
     <div
@@ -273,7 +278,24 @@ function HeroPreview({
       role="group"
       aria-label={`${title}, ${viewport} hero mockup`}
     >
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_78%_47%,rgba(88,108,137,0.15),transparent_52%)]" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_72%_52%,rgba(88,108,137,0.12),transparent_58%)]" />
+      <Artwork
+        concept={concept}
+        className={cn(
+          "z-0",
+          isMobile
+            ? "inset-x-[-8%] top-[38%] bottom-[-3%] opacity-30"
+            : "inset-y-[-9%] right-[-5%] w-[78%] opacity-35",
+        )}
+      />
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0 z-[1]",
+          isMobile
+            ? "bg-gradient-to-b from-[#0d0e10] via-[#0d0e10]/75 to-[#0d0e10]/45"
+            : "bg-gradient-to-r from-[#0d0e10] via-[#0d0e10]/85 to-[#0d0e10]/45",
+        )}
+      />
 
       <div
         className={cn(
@@ -314,12 +336,6 @@ function HeroPreview({
         </div>
       </div>
 
-      {isMobile ? (
-        <div className="relative mt-2 min-h-0 flex-1">{ConceptArt}</div>
-      ) : (
-        <div className="absolute inset-y-0 right-0 w-[53%]">{ConceptArt}</div>
-      )}
-
       <span className="absolute right-4 bottom-3 text-[0.48rem] tracking-[0.18em] text-white/25 uppercase">
         Howard Frelindo Goh · Portfolio
       </span>
@@ -332,14 +348,14 @@ const concepts: { id: Concept; number: string; title: string; note: string }[] =
     {
       id: "monogram",
       number: "01",
-      title: "HFG Sculpture",
-      note: "A dimensional monogram makes the hero personal and memorable.",
+      title: "HFG Monogram Background",
+      note: "A dimensional monogram sits behind the copy as a quiet personal signature.",
     },
     {
       id: "rings",
       number: "02",
-      title: "Interlocking Rings",
-      note: "Connected metal forms suggest the links between different kinds of software.",
+      title: "Interlocking Rings Background",
+      note: "Low-contrast rings add depth behind the copy and suggest connected systems.",
     },
   ];
 
@@ -358,9 +374,9 @@ export function HeroConceptGallery() {
               Hero concepts
             </h1>
             <p className="text-muted mt-4 max-w-xl text-sm leading-relaxed sm:text-base">
-              Two restrained sculpture directions, each shown at desktop and
-              mobile proportions. The forms are static studies for review, not
-              the final interactive 3D asset.
+              Two restrained 3D background directions, each shown at desktop and
+              mobile proportions. The forms stay behind the copy and are static
+              studies for review, not the final interactive 3D asset.
             </p>
           </div>
 
@@ -412,9 +428,9 @@ export function HeroConceptGallery() {
 
         <aside className="border-hairline text-muted mt-12 border-t pt-5 text-xs leading-relaxed sm:flex sm:items-start sm:justify-between sm:gap-8">
           <p className="max-w-2xl">
-            Review focus: choose the visual direction that feels most
-            distinctive while keeping Howard&apos;s name, positioning, and calls
-            to action easy to read.
+            Review focus: choose the background treatment that adds depth while
+            keeping Howard&apos;s name, positioning, and calls to action easy to
+            read.
           </p>
           <p className="mt-3 shrink-0 tracking-wide sm:mt-0">
             Next: approve form, accent, and final hero copy.
