@@ -277,3 +277,29 @@ effect should be load-bearing for content or navigation.
   and is the strongest first-impression format for this audience.
 - **Tokens-first styling** makes replicating the reference (and the dark/light
   toggle) a config concern, not a per-component one.
+
+---
+
+## 7. Proposed hero and project refresh
+
+The current implementation has a text-led hero, home-page project rows, and
+text-heavy project detail pages. [BACKLOG.md](./BACKLOG.md) tracks a proposed
+refresh; the items below are design constraints, not shipped architecture.
+
+- **Hero composition:** keep the name, positioning, and calls to action as HTML.
+  On desktop, reserve a separate area beside the copy for one sculptural 3D
+  object. On mobile, place a smaller object below or beside the copy.
+- **3D scene boundary:** load the scene only on the home hero. The preferred
+  visual proposal is an HFG monogram; interlocking rings are an alternate. The
+  final shape, material, and accent color require a mockup decision.
+- **Interaction:** use restrained pointer tilt, a short entrance settle, and
+  optional touch drag. Avoid continuous motion while the visitor is reading.
+- **Fallback:** a still poster must preserve the hero layout for reduced motion,
+  loading, unsupported WebGL, or lower-power devices. The object is decorative;
+  navigation and content remain in semantic HTML.
+- **Project presentation:** add image previews to the home-page rows and make
+  detail pages easier to scan through problem, contribution, and outcome blocks.
+  Keep project facts in `src/content/projects.ts` as the single source of truth.
+- **Visual system:** strengthen heading hierarchy and spacing, with one accent
+  used sparingly across the object and selected interface details. Both themes
+  must retain legible contrast.

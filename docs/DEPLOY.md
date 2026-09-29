@@ -25,10 +25,28 @@ git push -u origin main
    - This feeds the canonical/OG URLs, `sitemap.xml`, and `robots.txt`.
 4. Deploy. Every push to `main` redeploys; pull requests get preview URLs.
 
+### Choosing a domain
+
+- A verified GitHub Student Developer Pack account may have a first-year domain
+  offer through Name.com. Check the current eligible extensions, the exact
+  domain's availability, checkout total, and renewal price in the
+  [GitHub Education offers](https://education.github.com/pack/offers). `.dev` is
+  one candidate for `howardfgoh.dev`; this is a proposal, not a registered domain.
+- A `.com` such as `howardfgoh.com` can be purchased from a registrar. Compare the
+  full checkout total and renewal price, especially when a first-year promotion
+  requires a multi-year term. Domain-only registration is sufficient for a site
+  hosted on Vercel; separate hosting and mailbox products are optional.
+- For a domain registered outside Vercel, add it under the Vercel project's
+  **Settings → Domains**, then enter the exact DNS records Vercel provides in the
+  registrar's DNS dashboard. Vercel provisions HTTPS after verification. Set
+  `NEXT_PUBLIC_SITE_URL` to the final `https://` origin and redeploy.
+
+The custom-domain decision is tracked in [BACKLOG.md](./BACKLOG.md).
+
 ## 3. Verify after deploy
 
 - [ ] Home, `/projects`, and a `/projects/<id>` page all load.
-- [ ] `/(/)sitemap.xml` and `/robots.txt` resolve and use your real domain.
+- [ ] `/sitemap.xml` and `/robots.txt` resolve and use your real domain.
 - [ ] Share the URL in a chat / on X — the OG card renders (`/opengraph-image`).
 - [ ] Run Lighthouse (Chrome DevTools → Lighthouse) on the production URL;
       target 90+ on Performance, Accessibility, Best Practices, SEO.

@@ -21,8 +21,9 @@ parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 > detail pages. Phase 4/5 added: polished contact + footer, magnetic CTAs,
 > accessibility (focus rings, landmarks, AA contrast, reduced-motion), image
 > optimization, and SEO (metadata, sitemap, robots). Remaining: **Phase 6 —
-> deploy to Vercel** (set `NEXT_PUBLIC_SITE_URL`). See
-> [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
+> deploy to Vercel** (set `NEXT_PUBLIC_SITE_URL`). A proposed hero and project
+> design refresh is tracked separately in [docs/BACKLOG.md](docs/BACKLOG.md).
+> See [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md).
 >
 > **Adding project screenshots:** drop images in `public/projects/`, then set the
 > `images` array for that project in `src/content/projects.ts` (e.g.
@@ -34,10 +35,14 @@ parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 | Doc | What's in it |
 |---|---|
 | [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md) | Phased build plan (Phase 0 → 6) with "done when" gates. |
+| [docs/BACKLOG.md](docs/BACKLOG.md) | Proposed 3D hero, project storytelling, visual polish, and domain work. |
 | [docs/TECH_STACK.md](docs/TECH_STACK.md) | Stack choices and the reasoning behind them. |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Folder layout, data flow, components, design tokens. |
 | [docs/DEPLOY.md](docs/DEPLOY.md) | Deploy steps (GitHub + Vercel), env vars, post-deploy checklist. |
 | [docs/Portfolio_Website_Build_Prompt.md](docs/Portfolio_Website_Build_Prompt.md) | Original source brief and full project content. |
+
+The hero concept comparison is available at `/design/hero-concepts` in a local
+or preview deployment.
 
 ## Tech stack
 

@@ -28,11 +28,19 @@ replicate its look and motion without fighting the tooling.
 | Lint/format | **ESLint + Prettier** | Consistent, documented code. |
 | Hosting | **Vercel** | Native Next.js host, preview deploys, edge CDN, free tier. |
 
-## Deliberately NOT included (for now)
+## Proposed 3D addition
 
-- **React Three Fiber / 3D** — the reference uses it, but Howard's content is
-  image-and-text driven. 3D risks the Lighthouse 90+ target and adds weight for
-  little payoff. Left as an optional Phase 5+ enhancement, not a dependency.
+The design backlog proposes one interactive object in the home hero. If its
+visual direction is approved, use **React Three Fiber + Three.js** in a lazily
+loaded client component, with a still poster for reduced motion, loading, and
+unsupported WebGL. Render on demand and keep the scene small enough to preserve
+the existing performance target. See [BACKLOG.md](./BACKLOG.md) for scope and
+acceptance criteria. These packages are not installed yet.
+
+## Deliberately NOT included
+
+- **Site-wide 3D scenes** — the proposed hero object is a focal accent; other
+  sections remain centered on content and project evidence.
 - **A CMS / database** — content is small and stable; it lives in a typed
   `content/projects.ts` file. No backend needed.
 - **State library (Zustand/Redux)** — a single theme context + `localStorage` is
