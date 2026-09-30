@@ -4,6 +4,7 @@ import { useEffect, useId, useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, X } from "lucide-react";
 import { projects } from "@/content/projects";
 import { ProjectImage } from "@/components/projects/ProjectImage";
+import { ProjectInsights } from "@/components/projects/ProjectInsights";
 import { TechChip } from "@/components/ui/TechChip";
 
 export function ProjectDetailDialog({
@@ -129,32 +130,14 @@ export function ProjectDetailDialog({
                 </p>
               )}
 
-              <div className="mt-7 space-y-6 sm:mt-9">
-                <section>
-                  <h3 className="text-muted text-[0.62rem] tracking-[0.18em] uppercase">
-                    Overview
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed sm:text-[0.95rem]">
-                    {project.description}
-                  </p>
-                </section>
-                <section>
-                  <h3 className="text-muted text-[0.62rem] tracking-[0.18em] uppercase">
-                    Impact
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed sm:text-[0.95rem]">
-                    {project.impact}
-                  </p>
-                </section>
-                <section>
-                  <h3 className="text-muted text-[0.62rem] tracking-[0.18em] uppercase">
-                    {project.inProgress ? "What I'm learning" : "What I learned"}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed sm:text-[0.95rem]">
-                    {project.learned}
-                  </p>
-                </section>
-              </div>
+              <ProjectInsights
+                key={project.id}
+                description={project.description}
+                impact={project.impact}
+                learned={project.learned}
+                learningLabel={project.inProgress ? "What I'm learning" : "What I learned"}
+                className="mt-7 sm:mt-9"
+              />
 
               <a
                 href={project.repo}

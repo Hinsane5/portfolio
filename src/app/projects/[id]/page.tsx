@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/content/projects";
 import { profile } from "@/content/profile";
 import { ProjectImage } from "@/components/projects/ProjectImage";
+import { ProjectInsights } from "@/components/projects/ProjectInsights";
 import { TechChip } from "@/components/ui/TechChip";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -91,24 +92,13 @@ export default async function ProjectDetail({
         </Reveal>
 
         <Reveal>
-          <p className="mt-10 text-lg leading-relaxed">{project.description}</p>
-        </Reveal>
-
-        <Reveal>
-          <div className="mt-10 space-y-8">
-            <div>
-              <h2 className="text-muted text-xs tracking-[0.2em] uppercase">
-                Impact
-              </h2>
-              <p className="mt-2 leading-relaxed">{project.impact}</p>
-            </div>
-            <div>
-              <h2 className="text-muted text-xs tracking-[0.2em] uppercase">
-                {project.inProgress ? "What I'm learning" : "What I learned"}
-              </h2>
-              <p className="mt-2 leading-relaxed">{project.learned}</p>
-            </div>
-          </div>
+          <ProjectInsights
+            description={project.description}
+            impact={project.impact}
+            learned={project.learned}
+            learningLabel={project.inProgress ? "What I'm learning" : "What I learned"}
+            className="mt-10"
+          />
         </Reveal>
 
         <Reveal>
