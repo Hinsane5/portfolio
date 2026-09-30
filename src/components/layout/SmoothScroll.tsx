@@ -7,8 +7,8 @@ import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 
 /**
  * Lenis smooth scroll, mounted once at the root. Disabled under
- * prefers-reduced-motion, and on /projects (which uses a native scroll-snap
- * container that Lenis would otherwise hijack).
+ * prefers-reduced-motion, and on /projects so the index and detail dialog keep
+ * native scroll and focus behavior.
  */
 export function SmoothScroll() {
   const reduced = useReducedMotion();

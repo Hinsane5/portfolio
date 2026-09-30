@@ -11,14 +11,14 @@ team, recruiters, and collaborators.
 **Sections:** Hero · About · Education · Experience · Skills · Projects · Contact —
 single-page scroll with anchored sidebar nav.
 
-**Motion:** a custom cursor (dot + trailing ring with hover/magnetic states) and a
-scroll-driven animation system (smooth scroll, reveals, text reveals, image
-parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
+**Motion:** a custom cursor (dot + trailing ring with hover/magnetic states),
+scroll reveals, and a native-scroll-driven Projects spiral made from the
+project screenshots — all gated behind `prefers-reduced-motion`.
 
 > **Status:** Phases 1–5 complete. Full single-page site (hero, about, skills,
-> education, experience, projects) + a Kento-style `/projects` showcase with
-> scroll-snap, sticky updating panel, and quick-jump index, plus per-project
-> detail pages. Phase 4/5 added: polished contact + footer, magnetic CTAs,
+> education, experience, projects) + a scroll-driven 3D project spiral, an
+> all-projects grid with in-place detail browsing, and per-project detail pages.
+> Phase 4/5 added: polished contact + footer, magnetic CTAs,
 > accessibility (focus rings, landmarks, AA contrast, reduced-motion), image
 > optimization, and SEO (metadata, sitemap, robots). Remaining: **Phase 6 —
 > deploy to Vercel** (set `NEXT_PUBLIC_SITE_URL`). A proposed hero and project
@@ -35,14 +35,11 @@ parallax, scroll progress) — all gated behind `prefers-reduced-motion`.
 | Doc | What's in it |
 |---|---|
 | [docs/BUILD_PLAN.md](docs/BUILD_PLAN.md) | Phased build plan (Phase 0 → 6) with "done when" gates. |
-| [docs/BACKLOG.md](docs/BACKLOG.md) | Proposed 3D hero, project storytelling, visual polish, and domain work. |
+| [docs/BACKLOG.md](docs/BACKLOG.md) | Project spiral review, visual polish, and domain work. |
 | [docs/TECH_STACK.md](docs/TECH_STACK.md) | Stack choices and the reasoning behind them. |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Folder layout, data flow, components, design tokens. |
 | [docs/DEPLOY.md](docs/DEPLOY.md) | Deploy steps (GitHub + Vercel), env vars, post-deploy checklist. |
 | [docs/Portfolio_Website_Build_Prompt.md](docs/Portfolio_Website_Build_Prompt.md) | Original source brief and full project content. |
-
-The hero concept comparison is available at `/design/hero-concepts` in a local
-or preview deployment.
 
 ## Tech stack
 

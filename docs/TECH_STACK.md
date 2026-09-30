@@ -28,19 +28,18 @@ replicate its look and motion without fighting the tooling.
 | Lint/format | **ESLint + Prettier** | Consistent, documented code. |
 | Hosting | **Vercel** | Native Next.js host, preview deploys, edge CDN, free tier. |
 
-## Proposed 3D addition
+## Scroll-driven project depth
 
-The design backlog proposes one low-contrast 3D form behind the home hero copy.
-If its visual direction is approved, use **React Three Fiber + Three.js** in a
-lazily loaded client component, with a still poster for reduced motion, loading,
-and unsupported WebGL. Render on demand and keep pointer parallax restrained so
-the background stays secondary to the text. See [BACKLOG.md](./BACKLOG.md) for
-scope and acceptance criteria. These packages are not installed yet.
+The Projects section arranges the existing project screenshots into a
+scroll-driven spiral using CSS perspective and 3D transforms. The browser's
+normal scroll position controls the active card, direction, and progress rail.
+This reuses the portfolio's real content, works without WebGL, and needs no
+additional package. See [BACKLOG.md](./BACKLOG.md) for scope and review criteria.
 
 ## Deliberately NOT included
 
-- **Site-wide 3D scenes** — the proposed hero background is a single accent;
-  sections remain centered on content and project evidence.
+- **Standalone 3D ornament or WebGL scene** — the dimensional treatment is built
+  from project artwork, so the projects remain the subject of the interaction.
 - **A CMS / database** — content is small and stable; it lives in a typed
   `content/projects.ts` file. No backend needed.
 - **State library (Zustand/Redux)** — a single theme context + `localStorage` is

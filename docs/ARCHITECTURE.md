@@ -32,9 +32,9 @@ Website/
     └── src/
         ├── app/
         │   ├── layout.tsx     # root layout: fonts, theme, persistent SiteChrome
-        │   ├── page.tsx       # home: Hero…Contact + compact ProjectsPreview
+        │   ├── page.tsx       # home: Hero…Contact + scroll-driven ProjectsPreview
         │   ├── projects/
-        │   │   ├── page.tsx        # /projects — Works-style index
+        │   │   ├── page.tsx        # /projects — all-projects grid
         │   │   └── [id]/page.tsx   # /projects/[id] — per-project detail (SSG)
         │   ├── globals.css    # Tailwind layers + base styles
         │   ├── sitemap.ts     # SEO sitemap
@@ -44,7 +44,7 @@ Website/
         │   │                  #   MobileNav, CustomCursor, ScrollProgress, SmoothScroll
         │   ├── sections/      # Hero, About, Education, Experience, Skills,
         │   │                  #   ProjectsPreview, Contact, Footer
-        │   ├── projects/      # ProjectsShowcase, ProjectImage
+        │   ├── projects/      # Project spiral, index, detail dialog, ProjectImage
         │   └── ui/            # primitives: Reveal, TextReveal, Parallax,
         │                      #   TechChip, TimelineItem, SectionHeading, icons
         ├── content/
@@ -70,7 +70,8 @@ Website/
 Content is static and typed — no backend, no fetching.
 
 ```
-content/projects.ts    ──Project[]──────►  <Projects>    ──►  <ProjectCard> × 5
+content/projects.ts    ──Project[]──────►  <ProjectsPreview> / <ProjectsIndex>
+                                                └──────►  <ProjectDetailDialog>
 content/education.ts    ──Education[]─────►  <Education>   ──►  <TimelineItem> × n
 content/experience.ts   ──Experience[]────►  <Experience>  ──►  <TimelineItem> × n
 content/skills.ts       ──SkillGroup[]────►  <Skills>      ──►  <TechChip> grid
@@ -159,8 +160,8 @@ RootLayout (fonts, theme provider, smooth-scroll, cursor provider)
     ├── Experience        (renders only if content present)
     │   └── TimelineItem ×n
     ├── Skills             grouped tech chips (Game/Desktop/Web/Mobile/AI)
-    ├── Projects
-    │   └── ProjectCard ×5 image/placeholder, number, meta, tech, copy, repo
+    ├── Projects            sticky scroll runway + CSS 3D spiral of project images
+    │   └── ProjectDetailDialog (shared by spiral and all-projects grid)
     ├── Contact            email / phone / github / closing line
     ├── Footer             copyright
     └── BackToTop
@@ -226,14 +227,16 @@ cursor** and **scroll-driven animation**. Everything below is gated behind
   position written to refs, not React state, to avoid re-renders.
 
 **Scroll animation**
-- **Smooth scroll:** Lenis drives the page; scroll-linked effects read its value.
+- **Smooth scroll:** Lenis drives the home page; the Projects spiral reads the
+  browser's scroll position without intercepting wheel or touch input.
 - **Reveal:** fade + translate-Y as elements enter (`<Reveal>`), staggered for
   lists/grids and timeline entries.
 - **Text reveal:** line/word mask wipe on the hero name and section headings
   (`<TextReveal>`).
-- **Parallax:** subtle vertical offset on project images, alternating sides like
-  the reference Works page (`<Parallax>`).
-- **Sticky/pinned:** optional pin-and-reveal as each project scrolls in.
+- **Projects spiral:** CSS perspective arranges the existing project screenshots
+  around the active project. Native scrolling advances or reverses the cards and
+  a vertical progress rail. The pinned stage releases at its section boundary,
+  so the page continues naturally to Contact.
 - **Scroll progress:** thin top bar / sidebar tick (`<ScrollProgress>`).
 - **Micro-interactions:** link underlines, chip hovers, theme-toggle transition.
 
@@ -280,25 +283,26 @@ effect should be load-bearing for content or navigation.
 
 ---
 
-## 7. Proposed hero and project refresh
+## 7. Scroll-driven project experience
 
-The current implementation has a text-led hero, home-page project rows, and
-text-heavy project detail pages. [BACKLOG.md](./BACKLOG.md) tracks a proposed
-refresh; the items below are design constraints, not shipped architecture.
+The home Projects section uses the project's real images and text as its visual
+content. A tall section provides a sticky viewport; scroll position determines
+the active project and the CSS `translate3d` / `rotateY` transforms that place
+the remaining cards around it. This supplies the requested depth without a
+standalone model or WebGL dependency.
 
-- **Hero composition:** keep the name, positioning, and calls to action as HTML.
-  Place one low-contrast 3D form behind the copy as background atmosphere, not
-  as a standalone sculpture. Compare an HFG monogram with interlocking rings.
-- **3D scene boundary:** load the scene only on the home hero. The final form,
-  material, and accent strength are still open for review.
-- **Interaction:** use restrained pointer parallax on desktop and keep the form
-  still or nearly still on mobile. Avoid continuous rotation and camera travel.
-- **Fallback:** a still poster must preserve the hero layout for reduced motion,
-  loading, unsupported WebGL, or lower-power devices. The object is decorative;
-  navigation and content remain in semantic HTML.
-- **Project presentation:** add image previews to the home-page rows and make
-  detail pages easier to scan through problem, contribution, and outcome blocks.
-  Keep project facts in `src/content/projects.ts` as the single source of truth.
-- **Visual system:** strengthen heading hierarchy and spacing, with one accent
-  used sparingly across the object and selected interface details. Both themes
-  must retain legible contrast.
+- **One data source:** `src/content/projects.ts` feeds the spiral, the all-projects
+  grid at `/projects`, existing static detail routes, and the shared detail dialog.
+- **Natural scrolling:** the section observes passive scroll events and maps its
+  runway to a 0–100 progress value. It never cancels wheel or touch input; the
+  sticky stage releases at the section boundary and scrolling back restores the
+  previous position.
+- **Details:** a native modal dialog stays mounted over its origin view. Previous
+  and next controls update its content without closing it; closing returns to
+  the same scroll or list position.
+- **Accessibility and motion:** cards and controls are buttons or links with
+  visible focus, the progress rail exposes its value, Escape closes the dialog,
+  and reduced motion removes decorative transitions.
+- **Responsive behavior:** card size and helix radius follow the stage width;
+  touch users use ordinary page scrolling, and the all-projects grid remains a
+  direct alternative to the spiral.

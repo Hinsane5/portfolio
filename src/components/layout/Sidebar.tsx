@@ -15,8 +15,8 @@ export function Sidebar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // All nav items are in-page sections on the home page (Projects scrolls to the
-  // preview; "View all projects" there opens the dedicated /projects page).
+  // All nav items are in-page sections on the home page (Projects scrolls to
+  // the spiral; its "View all projects" control opens the dedicated index).
   const hrefFor = (id: SectionId) => (isHome ? `#${id}` : `/#${id}`);
   const isActive = (id: SectionId) => isHome && active === id;
 

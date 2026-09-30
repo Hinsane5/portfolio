@@ -201,9 +201,8 @@ and scroll animations feel smooth at 60fps, and reduced-motion fully disables th
 **Done when:** Site is live on Vercel, share preview renders correctly, sitemap
 resolves, README lets a stranger run and deploy it.
 
-The proposed 3D hero and broader design refresh are tracked in
-[BACKLOG.md](./BACKLOG.md). They are separate from the original phase gates and
-remain unimplemented proposals. The 3D work depends on a visual direction.
+The scroll-driven project spiral and remaining design refinements are tracked in
+[BACKLOG.md](./BACKLOG.md). They are separate from the original phase gates.
 
 ---
 

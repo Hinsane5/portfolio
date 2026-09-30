@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { profile } from "@/content/profile";
-import { ProjectsShowcase } from "@/components/projects/ProjectsShowcase";
+import { ProjectsIndex } from "@/components/projects/ProjectsIndex";
 
 export const metadata: Metadata = {
   title: `Works — ${profile.name}`,
@@ -9,11 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  return (
-    <main>
-      <div className="px-6 pt-20 pb-16 sm:px-12 lg:px-20 lg:py-0">
-        <ProjectsShowcase />
-      </div>
-    </main>
-  );
+  return <ProjectsIndex />;
 }
