@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
@@ -15,6 +16,7 @@ export function CustomCursor() {
   const finePointer = useMediaQuery("(pointer: fine)");
   const enabled = finePointer && !reduced;
   const [hovering, setHovering] = useState(false);
+  const [topLayer, setTopLayer] = useState<HTMLElement | null>(null);
 
   // Raw pointer position (dot follows instantly).
   const x = useMotionValue(-100);
@@ -27,6 +29,20 @@ export function CustomCursor() {
     if (!enabled) return;
     document.documentElement.classList.add("has-custom-cursor");
 
+    // Native modal dialogs live in the browser's top layer, above every page
+    // z-index. Portal the cursor into an open dialog so it stays visible there.
+    const syncTopLayer = () => {
+      const dialog = document.querySelector<HTMLElement>("dialog[open]");
+      setTopLayer((current) => (current === dialog ? current : dialog));
+    };
+    const observer = new MutationObserver(syncTopLayer);
+    observer.observe(document.body, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["open"],
+    });
+    syncTopLayer();
+
     const move = (e: PointerEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
@@ -38,13 +54,15 @@ export function CustomCursor() {
     window.addEventListener("pointermove", move);
     return () => {
       window.removeEventListener("pointermove", move);
+      observer.disconnect();
+      setTopLayer(null);
       document.documentElement.classList.remove("has-custom-cursor");
     };
   }, [enabled, x, y]);
 
   if (!enabled) return null;
 
-  return (
+  const cursor = (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[100]">
       {/* Dot */}
       <motion.div
@@ -64,4 +82,6 @@ export function CustomCursor() {
       />
     </div>
   );
+
+  return topLayer ? createPortal(cursor, topLayer) : cursor;
 }
