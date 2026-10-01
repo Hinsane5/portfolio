@@ -20,28 +20,25 @@ git push -u origin main
    - Build command: `next build`
    - Output: handled automatically
 3. Add an environment variable:
-   - `NEXT_PUBLIC_SITE_URL` = your production URL (e.g. `https://howardgoh.com`
-     or the `https://<project>.vercel.app` Vercel gives you).
+   - `NEXT_PUBLIC_SITE_URL` = `https://howardfgoh.com`.
    - This feeds the canonical/OG URLs, `sitemap.xml`, and `robots.txt`.
-4. Deploy. Every push to `main` redeploys; pull requests get preview URLs.
+4. Add `howardfgoh.com` under **Settings → Domains** in the Vercel project. Add
+   `www.howardfgoh.com` too, then choose which hostname should be primary. Use
+   the apex domain if you want the canonical URL to stay `howardfgoh.com`. Copy
+   the exact DNS records Vercel shows for this project.
+5. In Hostinger hPanel, open **Domains → Domain portfolio → howardfgoh.com →
+   DNS / Nameservers → DNS records** and add the records Vercel provided. Keep
+   DNS hosted at Hostinger unless you intend to move all DNS to Vercel; preserve
+   any existing records used by email or other services.
+6. Deploy. Every push to `main` redeploys; pull requests get preview URLs.
 
-### Choosing a domain
+Vercel verifies the DNS and provisions HTTPS after the records resolve. Use the
+values shown in your Vercel project's domain settings; the generic A/CNAME
+targets can differ for a particular project. See [Vercel's custom domain
+guide](https://vercel.com/docs/domains/set-up-custom-domain) and [Hostinger's DNS
+Zone Editor guide](https://support.hostinger.com/en/articles/1583249-how-to-manage-dns-records-at-hostinger).
 
-- A verified GitHub Student Developer Pack account may have a first-year domain
-  offer through Name.com. Check the current eligible extensions, the exact
-  domain's availability, checkout total, and renewal price in the
-  [GitHub Education offers](https://education.github.com/pack/offers). `.dev` is
-  one candidate for `howardfgoh.dev`; this is a proposal, not a registered domain.
-- A `.com` such as `howardfgoh.com` can be purchased from a registrar. Compare the
-  full checkout total and renewal price, especially when a first-year promotion
-  requires a multi-year term. Domain-only registration is sufficient for a site
-  hosted on Vercel; separate hosting and mailbox products are optional.
-- For a domain registered outside Vercel, add it under the Vercel project's
-  **Settings → Domains**, then enter the exact DNS records Vercel provides in the
-  registrar's DNS dashboard. Vercel provisions HTTPS after verification. Set
-  `NEXT_PUBLIC_SITE_URL` to the final `https://` origin and redeploy.
-
-The custom-domain decision is tracked in [BACKLOG.md](./BACKLOG.md).
+The domain decision and connection status are tracked in [BACKLOG.md](./BACKLOG.md).
 
 ## 3. Verify after deploy
 

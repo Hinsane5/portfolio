@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
-  Design tokens — distilled from the reference (kentokawazoe.com).
+  Design tokens distilled from the reference (kentokawazoe.com).
   Dark is the default; [data-theme="light"] is the alternate (Phase 1 toggle).
   See docs/ARCHITECTURE.md §4.
 */

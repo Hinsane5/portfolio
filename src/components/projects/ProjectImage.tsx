@@ -28,7 +28,7 @@ export function ProjectImage({
       {src ? (
         <Image
           src={src}
-          alt={`${project.title} — ${project.tagline}`}
+          alt={`${project.title}: ${project.tagline}`}
           fill
           priority={priority}
           sizes="(max-width: 1024px) 100vw, 55vw"

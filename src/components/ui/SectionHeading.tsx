@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
 
-/** Section label above a hairline divider — the reference's `ABOUT ME` pattern. */
+/** Section label above a hairline divider, following the reference's `ABOUT ME` pattern. */
 export function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <Reveal>

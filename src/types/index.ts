@@ -1,4 +1,4 @@
-// Shared content types — see docs/ARCHITECTURE.md §2.
+// Shared content types, see docs/ARCHITECTURE.md §2.
 
 export type Project = {
   id: string;
@@ -16,6 +16,7 @@ export type Project = {
   learned: string;
   repo: string;
   images: string[]; // [] → render sized placeholder
+  imageCaptions?: string[];
 };
 
 export type EducationEntry = {

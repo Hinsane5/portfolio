@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/content/projects";
 import { profile } from "@/content/profile";
-import { ProjectImage } from "@/components/projects/ProjectImage";
+import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { ProjectInsights } from "@/components/projects/ProjectInsights";
 import { TechChip } from "@/components/ui/TechChip";
 import { Reveal } from "@/components/ui/Reveal";
@@ -23,7 +23,7 @@ export async function generateMetadata({
   const project = projects.find((p) => p.id === id);
   if (!project) return {};
   return {
-    title: `${project.title} — ${profile.name}`,
+    title: `${project.title} | ${profile.name}`,
     description: project.tagline,
     openGraph: { title: project.title, description: project.tagline },
   };
@@ -72,14 +72,14 @@ export default async function ProjectDetail({
           </div>
           {project.group && (
             <p className="text-muted mt-2 text-sm tracking-wide">
-              {project.group.team} — my role: {project.group.role}
+              {project.group.team} · My role: {project.group.role}
             </p>
           )}
         </Reveal>
 
         <Reveal>
           <div className="mt-12">
-            <ProjectImage project={project} priority />
+            <ProjectGallery key={project.id} project={project} priority />
           </div>
         </Reveal>
 

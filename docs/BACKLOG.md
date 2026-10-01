@@ -18,13 +18,13 @@ planning list and review record. The existing build phases remain in
 
 | ID   | Priority | Status                | Work                                                                                                                                                               | Done when                                                                                                                                         |
 | ---- | -------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| D-01 | High     | Ready for review      | Build a scroll-driven project spiral from the existing screenshots, with an accessible progress rail and natural transition into Contact.                           | Scroll down and up follows direction, progress reverses, projects open in a detail dialog, and the runway does not trap normal page scrolling.    |
+| D-01 | High     | Complete              | Build a scroll-driven project spiral from the existing screenshots, with an accessible progress rail and natural transition into Contact.                           | Scroll down and up follows direction, progress reverses, projects open in a detail dialog, and the runway does not trap normal page scrolling.    |
 | D-02 | High     | Proposed              | Refine hero copy and hierarchy for an Apple Developer Academy reviewer. Replace the broad “Developer · Engineer” label with a specific, accurate statement.          | A visitor can understand Howard's range and focus from the first screen; all claims are supported by the projects.                                  |
 | D-03 | High     | Complete              | Use existing project artwork in the home-page experience; provide a designed fallback where an image is missing.                                                     | Every project is identifiable at a glance, including the no-image hoshiBmaTchi entry.                                                             |
 | D-04 | High     | Complete              | Present each project's existing description, impact, learning, technologies, and group-role labels in a scan-friendly detail view.                                  | Details open from both the spiral and all-projects grid, arrows change projects, and close returns to the previous context.                         |
 | D-05 | Medium   | Proposed              | Tighten the visual system: clearer section hierarchy, varied spacing, and consistent restrained accents across the site.                                            | Dark and light themes feel coherent; text and controls remain legible and accessible.                                                               |
 | D-06 | Medium   | Proposed              | Check mobile and reduced-motion behavior and keep the CSS 3D scene lightweight; use project images rather than introducing a standalone WebGL model.                 | The interaction remains usable by touch and keyboard, respects reduced motion, and does not autoplay.                                              |
-| D-07 | High     | Pending domain choice | Deploy to Vercel and attach a custom domain. Compare the GitHub Student Developer Pack's eligible `.dev` offer with a purchased `.com`, including renewal cost.        | The production site, HTTPS, canonical URL, sitemap, and `NEXT_PUBLIC_SITE_URL` all use the chosen domain.                                           |
+| D-07 | High     | Domain purchased; DNS pending | Connect `howardfgoh.com` (registered at Hostinger) to the Vercel production project and set it as the canonical site origin.                                  | Apex and `www` are assigned to production, HTTPS works, and canonical URLs, sitemap, and `robots.txt` use `https://howardfgoh.com`. |
 
 ## Project spiral boundaries
 
@@ -43,6 +43,5 @@ planning list and review record. The existing build phases remain in
 
 1. Review and tune the spiral's card spacing, depth, and scroll pace on the Vercel preview.
 2. Approve final hero copy and the accent color.
-3. Choose and register the production domain. Domain availability and student
-   promotion eligibility must be checked at checkout; free registration does not
-   imply free renewal.
+3. Add `howardfgoh.com` and its `www` redirect in Vercel, copy the exact DNS
+   records Vercel displays into Hostinger, and verify the production domain.

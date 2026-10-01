@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { projects } from "@/content/projects";
 
 // Set NEXT_PUBLIC_SITE_URL to your production origin before deploying.
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://howardgoh.vercel.app";
+const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://howardfgoh.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/projects"].map((path) => ({

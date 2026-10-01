@@ -21,6 +21,17 @@ export function SmoothScroll() {
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
+    const syncDialogScroll = () => {
+      if (document.querySelector("dialog[open]")) lenis.stop();
+      else lenis.start();
+    };
+    const dialogObserver = new MutationObserver(syncDialogScroll);
+    dialogObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["open"],
+      subtree: true,
+    });
+    syncDialogScroll();
 
     // Let anchor clicks (#section) drive Lenis for smooth in-page nav.
     const onAnchorClick = (e: MouseEvent) => {
@@ -45,6 +56,7 @@ export function SmoothScroll() {
     return () => {
       cancelAnimationFrame(raf);
       document.removeEventListener("click", onAnchorClick);
+      dialogObserver.disconnect();
       lenis.destroy();
     };
   }, [reduced, pathname]);

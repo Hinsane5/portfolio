@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, X } from "lucide-react";
 import { projects } from "@/content/projects";
-import { ProjectImage } from "@/components/projects/ProjectImage";
+import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { ProjectInsights } from "@/components/projects/ProjectInsights";
 import { TechChip } from "@/components/ui/TechChip";
 
@@ -21,6 +21,15 @@ export function ProjectDetailDialog({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   const project = projects[projectIndex] ?? projects[0];
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -57,7 +66,7 @@ export function ProjectDetailDialog({
       }}
     >
       <div className="flex min-h-full items-center justify-center p-3 sm:p-6">
-        <article className="bg-bg border-hairline relative max-h-[calc(100svh-1.5rem)] w-full max-w-6xl overflow-y-auto rounded-sm border shadow-2xl sm:max-h-[calc(100svh-3rem)]">
+        <article className="bg-bg border-hairline relative max-h-[calc(100svh-1.5rem)] w-full max-w-6xl overflow-y-auto overscroll-contain rounded-sm border shadow-2xl sm:max-h-[calc(100svh-3rem)]">
           <div className="bg-bg/90 sticky top-0 z-20 flex items-center justify-between border-b border-hairline px-4 py-3 backdrop-blur-md sm:px-7 sm:py-4">
             <div className="flex items-center gap-3">
               <button
@@ -92,7 +101,7 @@ export function ProjectDetailDialog({
 
           <div className="grid gap-7 p-4 sm:gap-10 sm:p-7 lg:grid-cols-[1.05fr_0.95fr] lg:p-10">
             <div>
-              <ProjectImage project={project} priority />
+              <ProjectGallery key={project.id} project={project} priority />
               <div className="mt-5 flex flex-wrap gap-2">
                 {project.tech.map((technology) => (
                   <TechChip key={technology}>{technology}</TechChip>
@@ -126,7 +135,7 @@ export function ProjectDetailDialog({
               </p>
               {project.group && (
                 <p className="text-muted mt-2 text-xs leading-relaxed tracking-wide sm:text-sm">
-                  {project.group.team} — my role: {project.group.role}
+                  {project.group.team} · My role: {project.group.role}
                 </p>
               )}
 

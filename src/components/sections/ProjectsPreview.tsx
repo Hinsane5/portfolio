@@ -130,7 +130,7 @@ export function ProjectsPreview() {
           <header className="relative z-20 flex items-start justify-between gap-4">
             <div>
               <p className="text-muted text-[0.65rem] tracking-[0.22em] uppercase sm:text-xs">
-                Selected work · 2025—26
+                Selected work · 2025-26
               </p>
               <h2 className="mt-2 text-2xl font-light tracking-[0.1em] uppercase sm:text-3xl">
                 Projects

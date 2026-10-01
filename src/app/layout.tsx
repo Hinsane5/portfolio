@@ -20,9 +20,9 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://howardgoh.vercel.app",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://howardfgoh.com",
   ),
-  title: `${profile.name} — Portfolio`,
+  title: `${profile.name} | Portfolio`,
   description: profile.positioning,
   authors: [{ name: profile.name }],
   keywords: [
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     "AI",
   ],
   openGraph: {
-    title: `${profile.name} — Portfolio`,
+    title: `${profile.name} | Portfolio`,
     description: profile.positioning,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} — Portfolio`,
+    title: `${profile.name} | Portfolio`,
     description: profile.positioning,
   },
 };
