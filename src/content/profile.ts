@@ -8,4 +8,6 @@ export const profile: Profile = {
   email: "howardgoh99@gmail.com",
   phone: "+62 853-6309-3316",
   github: "https://github.com/Hinsane5",
+  linkedin: "https://www.linkedin.com/in/howard-frelindo-goh-a0872b314/",
+  cv: "/cv/Howard_Frelindo_Goh_CV.pdf",
 };

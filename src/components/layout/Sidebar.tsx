@@ -6,7 +6,7 @@ import { Mail } from "lucide-react";
 import { sections, type SectionId } from "@/lib/sections";
 import { useActiveSection } from "@/lib/hooks/useActiveSection";
 import { profile } from "@/content/profile";
-import { GithubIcon } from "@/components/ui/icons";
+import { GithubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 /** Fixed left sidebar (desktop): brand, nav, social icons. Hidden on mobile. */
@@ -58,6 +58,15 @@ export function Sidebar() {
       </nav>
 
       <div className="flex flex-col gap-4">
+        <a
+          href={profile.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="text-muted hover:text-text transition-colors"
+        >
+          <LinkedInIcon className="h-5 w-5" />
+        </a>
         <a
           href={profile.github}
           target="_blank"

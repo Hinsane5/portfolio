@@ -3,7 +3,7 @@ import { profile } from "@/content/profile";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Magnetic } from "@/components/ui/Magnetic";
-import { GithubIcon } from "@/components/ui/icons";
+import { GithubIcon, LinkedInIcon } from "@/components/ui/icons";
 
 export function Contact() {
   return (
@@ -51,6 +51,15 @@ export function Contact() {
             >
               <GithubIcon className="h-4 w-4" />
               {profile.github.replace("https://", "")}
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-text inline-flex w-fit items-center gap-3 transition-colors"
+            >
+              <LinkedInIcon className="h-4 w-4" />
+              LinkedIn profile
             </a>
           </div>
         </Reveal>

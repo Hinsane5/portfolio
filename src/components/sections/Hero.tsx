@@ -43,6 +43,25 @@ export function Hero() {
           </Magnetic>
           <Magnetic>
             <a
+              href={profile.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-hairline hover:border-text inline-block rounded-full border px-6 py-2.5 text-sm tracking-wide transition-colors"
+            >
+              View CV
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
+              href={profile.cv}
+              download="Howard_Frelindo_Goh_CV.pdf"
+              className="border-hairline hover:border-text inline-block rounded-full border px-6 py-2.5 text-sm tracking-wide transition-colors"
+            >
+              Download CV
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
               href={profile.github}
               target="_blank"
               rel="noopener noreferrer"

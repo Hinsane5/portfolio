@@ -48,4 +48,6 @@ export type Profile = {
   email: string;
   phone: string;
   github: string;
+  linkedin: string;
+  cv: string;
 };
