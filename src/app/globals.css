@@ -77,6 +77,17 @@ section[id] {
   scroll-margin-top: 5.5rem;
 }
 
+/* Shorten the project-by-project scroll distance on touch devices. */
+.projects-preview-runway {
+  height: var(--mobile-runway-height);
+}
+
+@media (min-width: 48rem) and (pointer: fine) {
+  .projects-preview-runway {
+    height: var(--desktop-runway-height);
+  }
+}
+
 /* Visible keyboard focus for accessibility. */
 :focus-visible {
   outline: 2px solid var(--text);

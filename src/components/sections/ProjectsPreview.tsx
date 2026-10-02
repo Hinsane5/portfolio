@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { projects } from "@/content/projects";
 import { ProjectImage } from "@/components/projects/ProjectImage";
@@ -106,12 +106,17 @@ export function ProjectsPreview() {
       id="projects"
       ref={runwayRef}
       aria-label="Projects"
-      className="relative isolate"
-      style={{ height: `${projects.length * 100}svh` }}
+      className="projects-preview-runway relative isolate"
+      style={
+        {
+          "--mobile-runway-height": `${100 + lastIndex * 64}svh`,
+          "--desktop-runway-height": `${projects.length * 100}svh`,
+        } as CSSProperties
+      }
     >
       <div
         ref={stageRef}
-        className="bg-bg sticky top-0 h-svh min-h-[34rem] overflow-hidden"
+        className="bg-bg sticky top-0 h-svh min-h-[34rem] touch-pan-y overflow-hidden"
         style={{ perspective: "1400px" }}
       >
         <div
@@ -146,7 +151,7 @@ export function ProjectsPreview() {
 
           <div
             aria-label="Project artwork spiral"
-            className="absolute inset-0 overflow-hidden"
+            className="absolute inset-0 touch-pan-y overflow-hidden"
             style={{ perspective: "1400px", transformStyle: "preserve-3d" }}
           >
             <div
@@ -154,7 +159,6 @@ export function ProjectsPreview() {
               style={{
                 transform: `translate3d(0, ${progress * 46}px, 0) rotateZ(${directionRotation}deg)`,
                 transformStyle: "preserve-3d",
-                transition: reducedMotion ? "none" : "transform 500ms ease-out",
               }}
             >
               {projects.map((project, index) => {
@@ -186,8 +190,6 @@ export function ProjectsPreview() {
                       zIndex: Math.round(100 - Math.abs(relative) * 12),
                       opacity,
                       pointerEvents: visible ? "auto" : "none",
-                      transitionDuration: reducedMotion ? "0ms" : "620ms",
-                      transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
                     }}
                   >
                     <ProjectImage
@@ -276,7 +278,6 @@ export function ProjectsPreview() {
                     style={{
                       height: "100%",
                       transform: `scaleY(${progress})`,
-                      transition: reducedMotion ? "none" : "transform 180ms linear",
                     }}
                   />
                 </span>
